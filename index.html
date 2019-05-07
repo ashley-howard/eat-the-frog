@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
+        integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel="stylesheet" href="styles/style.css">
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+
+    <!-- Bugs/Fixes 
+- "Finished" goes to next stage
+- clicking "skip" moves task to bottom and then retrieves the new first "first child element"
+- When "do" list is finished, remove "doControls" div, and replace with another div with another button?
+- give task ID name exact as what it is
+-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm">
+                <h2 class="text-center">1: Add</h2>
+                What do you need to do today?<br>
+                <input id="inputTask" type="text" name="task">
+                <p id="addError"></p>
+
+                <button onclick="addTask()">Add</button>
+                <button onclick="">Finished</button>
+
+            </div>
+            <div class="col-sm">
+                <h2 class="text-center">2: Order</h2>
+                Order from important to least important
+                <!-- Simple List -->
+                <ul id="simpleList" class="list-group">
+                    <li class="list-group-item task1">Task 1</li>
+                    <li class="list-group-item task2">Task 2</li>
+                    <li class="list-group-item task3">Task 3</li>
+                </ul>
+                <br>
+                <button onclick="doTasks()">Finished</button><br>
+            </div>
+            <div class="col-sm">
+                <h2 class="text-center">3: Do</h2>
+                <p id="inspireText">First up</p>
+                <p id="focusTask"></p>
+                <div id="doControls">
+                    <button onclick="finishedTask()">Done</button>
+                    <button onclick="skipTask()">Skip</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <script src="https://SortableJS.github.io/Sortable/Sortable.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
+        integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'
+        crossorigin='anonymous'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'
+        integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1'
+        crossorigin='anonymous'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
+        integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM'
+        crossorigin='anonymous'></script>
+</body>
+
+</html>
