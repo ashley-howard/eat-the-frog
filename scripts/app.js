@@ -5,11 +5,10 @@
  
  function addTask() {   
    var getTask = document.getElementById("inputTask").value;   
-   var taskWithoutSpace = getTask.replace(/\s+/g, '');
    
    if (getTask !== ''){
       var task = document.createElement("li");
-   task.classList.add('list-group-item', taskWithoutSpace);
+   task.classList.add('list-group-item');
    task.innerHTML = getTask;
    document.getElementById("simpleList").appendChild(task);
    document.getElementById('inputTask').value = "";
@@ -37,11 +36,24 @@ else{
    doTasks();
    doneInspireText();
    }
-   else if(document.getElementById("simpleList").childElementCount <= 1){
+   else if(document.getElementById("simpleList").childElementCount === 1){
    document.getElementById("focusTask").innerHTML = ""; 
      document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
      doneTask.removeChild(doneTask.firstElementChild)
+
+     // remove buttons and have a "back" button that goes go back the "add" screen
+     var doneButton = document.getElementById("done-button");
+     var skipButton = document.getElementById("skip-button");
+
+     doneButton.style.display = "none";
+     skipButton.style.display = "none";
+
+     var addMoreButton = document.getElementById("add-more");
+     addMoreButton.style.display = "inline-block";
    }
+   else{
+    console.log('Error');
+    }
  }
  
  function skipTask(){

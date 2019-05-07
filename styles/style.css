@@ -1,1 +1,7 @@
-body,html{text-align:center}
+body,html{
+    text-align:center;
+}
+
+button#add-more {
+    display: none;
+}
