@@ -1,21 +1,9 @@
-// https://ourcodeworld.com/articles/read/664/top-5-best-sortable-and-draggable-list-javascript-and-jquery-plugins
-
-// https://github.com/SortableJS/Sortable
-
-// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_document_createtextnode2
-
-// clean up code using shorter
-
- // Simple list
+ // Simple list JS
  Sortable.create(simpleList, {  });
 
  var doneTask = document.getElementById("simpleList");
- var task = document.createElement("li");
  
- 
- 
- function addTask() {
-   
+ function addTask() {   
    var getTask = document.getElementById("inputTask").value;   
    var taskWithoutSpace = getTask.replace(/\s+/g, '');
    
@@ -32,10 +20,7 @@
    }
  }
  
- function doTasks(){
-   // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_firstchild
-   // it should be, if there is only one child left and you click "done", it should finish
-   
+ function doTasks(){ 
 if (document.getElementById("simpleList").firstElementChild != undefined){
     var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
     document.getElementById("focusTask").innerHTML = focusTask;
@@ -46,12 +31,11 @@ else{
  }
  
  function finishedTask(){
-   // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_node_removechild
    if(document.getElementById("simpleList").childElementCount > 1){
    doneTask.removeChild(doneTask.firstElementChild);
    
    doTasks();
-   changeInspireText();
+   doneInspireText();
    }
    else if(document.getElementById("simpleList").childElementCount <= 1){
    document.getElementById("focusTask").innerHTML = ""; 
@@ -60,15 +44,7 @@ else{
    }
  }
  
- 
- 
  function skipTask(){
- // bugs: removes more than necessary
- // get top task
-    // if list is empty, show text
- 
-   // instead of using first child, copy the text
-   //or use next sibling
    var task = document.createElement("li");
    var duplicateTask = document.getElementById("simpleList").firstElementChild.innerHTML;
  
@@ -79,7 +55,6 @@ else{
 
  // remove top task
    var skippedTask = document.getElementById("simpleList");
-   //document.getElementById("simpleList").childNodes[0];
    
   skippedTask.removeChild(skippedTask.firstElementChild);
 
@@ -87,7 +62,6 @@ else{
     document.getElementById("focusTask").innerHTML = focusTask;
 
    skipInspireText();
-
  }
  
  
@@ -95,76 +69,50 @@ else{
    
  }
  
- 
-  function changeInspireText(){
-    // randomise?
-    // have two sets of texts for "doing" and "skipping"
+  function doneInspireText(){
+    var DoNo = Math.floor(Math.random() * 5);
+    console.log(DoNo);
     
-  document.getElementById("inspireText").innerHTML = "Great! Now try this one!";
-    
- // Skipping   //document.getElementById("inspireText").innerHTML = "No worries! Try this one instead.";
+    if (DoNo === 0){
+        document.getElementById("inspireText").innerHTML = "Great! Now try this one!";
+    }
+    else if (DoNo === 1){
+        document.getElementById("inspireText").innerHTML = "Keep it up! Now this one.";
+    }
+    else if (DoNo === 2){
+        document.getElementById("inspireText").innerHTML = "You're on a roll";
+    }
+    else if (DoNo === 3){
+        document.getElementById("inspireText").innerHTML = "Doing great so far!";
+    }
+    else if (DoNo === 4){
+        document.getElementById("inspireText").innerHTML = "That was easy wasn't it?";
+    }
+    else{
+        document.getElementById("inspireText").innerHTML = "Error";
+    }
   }
 
   function skipInspireText(){
-    const skipText1 = "No worries! Try this one instead.";
-    const skipText2 = "We can come back to that one. Have a go at this one.";
-    const skipText3 = "What about this one?";
-    const skipText4 = "We've got the whole day ahead of us. This seems easy.";
-    const skipText5 = "This one isn't too difficult.";
-
-    var nextSkippedTest = document.getElementById("inspireText").innerHTML = skipText1;
+    var skipNo = Math.floor(Math.random() * 5);
+    console.log(skipNo);
     
-    if (nextSkippedTest === skipText1){
-        document.getElementById("inspireText").innerHTML = skipText2;
+    if (skipNo === 0){
+        document.getElementById("inspireText").innerHTML = "No worries! Try this one instead.";
     }
-    else if (nextSkippedTest === skipText2){
-        document.getElementById("inspireText").innerHTML = skipText3;
+    else if (skipNo === 1){
+        document.getElementById("inspireText").innerHTML = "We can come back to that one. Have a go at this one.";
     }
-    else if (nextSkippedTest === skipText3){
-        document.getElementById("inspireText").innerHTML = skipText4;
+    else if (skipNo === 2){
+        document.getElementById("inspireText").innerHTML = "What about this one?";
     }
-    else if (nextSkippedTest === skipText4){
-        document.getElementById("inspireText").innerHTML = skipText1;
+    else if (skipNo === 3){
+        document.getElementById("inspireText").innerHTML = "We've got the whole day ahead of us. This seems easy.";
+    }
+    else if (skipNo === 4){
+        document.getElementById("inspireText").innerHTML = "This one isn't too difficult.";
     }
     else{
-        console.log('Error');
+        document.getElementById("inspireText").innerHTML = "Error";
     }
-    
   }
-
-
- 
- /*
- 
- let todayTasks = ["do laundry", "do homework"];
- let tomorrowTasks = [];
- 
- // add task 
- //todayTasks.push('test');
- 
- // remove task from "today"
- const finishedTasks = () => { 
-    
-   var index = todayTasks.indexOf("do laundry"); 
-   if (index > -1) {todayTasks.splice(index, -1);
-    }
-    
- };
- 
- // move tasks from "today" to "tomorrow"
- const unfinishedTasks = (todayTasks) => {
-  
-   // move to tomorrow
-   tomorrowTasks.push(todayTasks); 
-   
-   // then remove from "today"
-   
-  
- };
- 
- finishedTasks();
- // unfinishedTasks(todayTasks);
- 
- console.log("Today: " + todayTasks);
- console.log("Tomorrow: " + tomorrowTasks);
- */
