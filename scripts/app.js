@@ -16,8 +16,7 @@
  
  function addTask() {
    
-     var getTask = document.getElementById("inputTask").value;
-   
+   var getTask = document.getElementById("inputTask").value;   
    var taskWithoutSpace = getTask.replace(/\s+/g, '');
    
    if (getTask !== ''){
@@ -70,27 +69,25 @@ else{
  
    // instead of using first child, copy the text
    //or use next sibling
+   var task = document.createElement("li");
    var duplicateTask = document.getElementById("simpleList").firstElementChild.innerHTML;
  
  // add to bottom
    task.classList.add('list-group-item');
    task.innerHTML = duplicateTask;
    document.getElementById("simpleList").appendChild(task);
-   
+
  // remove top task
    var skippedTask = document.getElementById("simpleList");
    //document.getElementById("simpleList").childNodes[0];
    
   skippedTask.removeChild(skippedTask.firstElementChild);
-   //skippedTask.removeChild(skippedTask.childNodes[0]);
-   
-   //copy new first child
-   //var newfocusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
-  document.getElementById("focusTask").innerHTML = document.getElementById("simpleList").firstElementChild.innerHTML;
-   
-  // doTasks();
-   changeInspireText();
-   
+
+  var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+    document.getElementById("focusTask").innerHTML = focusTask;
+
+   skipInspireText();
+
  }
  
  
@@ -107,6 +104,35 @@ else{
     
  // Skipping   //document.getElementById("inspireText").innerHTML = "No worries! Try this one instead.";
   }
+
+  function skipInspireText(){
+    const skipText1 = "No worries! Try this one instead.";
+    const skipText2 = "We can come back to that one. Have a go at this one.";
+    const skipText3 = "What about this one?";
+    const skipText4 = "We've got the whole day ahead of us. This seems easy.";
+    const skipText5 = "This one isn't too difficult.";
+
+    var nextSkippedTest = document.getElementById("inspireText").innerHTML = skipText1;
+    
+    if (nextSkippedTest === skipText1){
+        document.getElementById("inspireText").innerHTML = skipText2;
+    }
+    else if (nextSkippedTest === skipText2){
+        document.getElementById("inspireText").innerHTML = skipText3;
+    }
+    else if (nextSkippedTest === skipText3){
+        document.getElementById("inspireText").innerHTML = skipText4;
+    }
+    else if (nextSkippedTest === skipText4){
+        document.getElementById("inspireText").innerHTML = skipText1;
+    }
+    else{
+        console.log('Error');
+    }
+    
+  }
+
+
  
  /*
  
