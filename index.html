@@ -27,29 +27,30 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-12 col-sm-4" id="add-section">
                 <h2 class="text-center">1: Add</h2>
                 What do you need to do today?<br>
                 <input id="inputTask" type="text" name="task">
                 <p id="addError"></p>
 
                 <button onclick="addTask()">Add</button>
-                <button onclick="">Finished</button>
+                <button onclick="finishAddTask()" id="finish-add-button">Finished</button>
 
             </div>
-            <div class="col-sm">
+            <div class="col-12 col-sm-4" id="order-section">
                 <h2 class="text-center">2: Order</h2>
                 Order from important to least important
                 <!-- Simple List -->
                 <ul id="simpleList" class="list-group">
-                    <li class="list-group-item task1">Task 1</li>
+                    <!--<li class="list-group-item task1">Task 1</li>
                     <li class="list-group-item task2">Task 2</li>
-                    <li class="list-group-item task3">Task 3</li>
+                    <li class="list-group-item task3">Task 3</li>-->
                 </ul>
                 <br>
-                <button onclick="doTasks()">Finished</button><br>
+                <button onclick="">Back</button>
+                <button onclick="doTasks()">Next</button><br>
             </div>
-            <div class="col-sm">
+            <div class="col-12 col-sm-4" id="do-section">
                 <h2 class="text-center">3: Do</h2>
                 <p id="inspireText">First up</p>
                 <p id="focusTask"></p>

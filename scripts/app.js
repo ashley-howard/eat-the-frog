@@ -1,6 +1,8 @@
  // Simple list JS
  Sortable.create(simpleList, {  });
 
+ var debug;
+
  var doneTask = document.getElementById("simpleList");
  
  function addTask() {   
@@ -18,11 +20,26 @@
    document.getElementById("addError").innerHTML = "Please type something";
    }
  }
+
+ // Hide and show DIVS
+ function finishAddTask(){
+    var addSection = document.getElementById("add-section");
+    addSection.style.display = "none";
+
+    var orderSection = document.getElementById("order-section");
+    orderSection.style.display = "block";
+ }
  
  function doTasks(){ 
 if (document.getElementById("simpleList").firstElementChild != undefined){
     var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
     document.getElementById("focusTask").innerHTML = focusTask;
+
+    var orderSection = document.getElementById("order-section");
+    orderSection.style.display = "none";
+
+    var doSection = document.getElementById("do-section");
+    doSection.style.display = "block";
 }
 else{
     document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
@@ -77,8 +94,12 @@ else{
  }
  
  
- function finishedToday(){
-   
+ function addMore(){
+    var doSection = document.getElementById("do-section");
+    doSection.style.display = "none";
+
+    var addSection = document.getElementById("add-section");
+    addSection.style.display = "block";
  }
  
   function doneInspireText(){

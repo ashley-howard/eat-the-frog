@@ -2,6 +2,6 @@ body,html{
     text-align:center;
 }
 
-button#add-more {
+button#add-more, #order-section, #do-section {
     display: none;
 }
