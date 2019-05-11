@@ -241,10 +241,10 @@ else{
 
  function ribbet(){
   
-  ribbetText.style.display = "inline-block";
+  ribbetText.innerHTML = "Ribbet! Time to get stuff done!";
   setTimeout(function(){
     $('#ribbet').remove();
-  }, 5000);
+ }, 5000);
  }
  
  
