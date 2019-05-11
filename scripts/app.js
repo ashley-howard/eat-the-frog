@@ -7,6 +7,9 @@
  var tomorrowTasks = [];
  var finishedTasks = [];
 
+ var addMoreButton = document.getElementById("add-more");
+ var mainButtons = document.getElementById("main-buttons");
+
  function debug(){
   var debugMode = document.getElementById("debug-button"); 
 
@@ -142,15 +145,8 @@ else{
      doneTask.removeChild(doneTask.firstElementChild)
 
      // remove buttons and have a "back" button that goes go back the "add" screen
-     var backButton = document.getElementById("back-button");
-     var doneButton = document.getElementById("done-button");
-     var skipButton = document.getElementById("skip-button");
-     var addMoreButton = document.getElementById("add-more");
-
      addMoreButton.style.display = "inline-block";
-     backButton.style.display = "none";
-     doneButton.style.display = "none";
-     skipButton.style.display = "none";
+     mainButtons.style.display = "none";
    }
    else{
     console.log('Error');
@@ -191,15 +187,11 @@ else{
     document.getElementById("addUpdate").innerHTML = "";
 
     // bring back "Do Div" buttons and remove "add more"
-    var addMoreButton = document.getElementById("add-more");
-    var backButton = document.getElementById("back-button");
-    var doneButton = document.getElementById("done-button");
-    var skipButton = document.getElementById("skip-button");
-
     addMoreButton.style.display = "none";
-    backButton.style.display = "inline-block";
-    doneButton.style.display = "inline-block";
-    skipButton.style.display = "inline-block";
+    mainButtons.style.display = "inline-block";
+
+    // Have "Do" text back to standard
+    document.getElementById("inspireText").innerHTML = "Let's go.";
 
  }
 
