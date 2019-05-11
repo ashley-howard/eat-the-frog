@@ -142,14 +142,15 @@ else{
      doneTask.removeChild(doneTask.firstElementChild)
 
      // remove buttons and have a "back" button that goes go back the "add" screen
+     var backButton = document.getElementById("back-button");
      var doneButton = document.getElementById("done-button");
      var skipButton = document.getElementById("skip-button");
+     var addMoreButton = document.getElementById("add-more");
 
+     addMoreButton.style.display = "inline-block";
+     backButton.style.display = "none";
      doneButton.style.display = "none";
      skipButton.style.display = "none";
-
-    // var addMoreButton = document.getElementById("add-more");
-   //  addMoreButton.style.display = "inline-block";
    }
    else{
     console.log('Error');
@@ -188,6 +189,18 @@ else{
     doSection.style.display = "none";
 
     document.getElementById("addUpdate").innerHTML = "";
+
+    // bring back "Do Div" buttons and remove "add more"
+    var addMoreButton = document.getElementById("add-more");
+    var backButton = document.getElementById("back-button");
+    var doneButton = document.getElementById("done-button");
+    var skipButton = document.getElementById("skip-button");
+
+    addMoreButton.style.display = "none";
+    backButton.style.display = "inline-block";
+    doneButton.style.display = "inline-block";
+    skipButton.style.display = "inline-block";
+
  }
 
  function orderDiv(){
@@ -268,3 +281,4 @@ else{
       document.getElementById("add-button").click();
   }
 });
+

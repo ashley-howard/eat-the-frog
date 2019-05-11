@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" type="image/png" href="/images/icons-192.png">
 
     <title>Eat the frog</title>
+    <link rel="manifest" href="manifest.webmanifest">
 </head>
 
 <body>
@@ -28,6 +30,7 @@
 - create a pomodoro app too? (optional)
 - actually show inpsiring quotes from famous people
 - When click on frog, bring back home and write at top "Ribbet, time to get stuff done"
+- add menu link explaining how to make into app
 -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -59,7 +62,8 @@
 
                 <span class="info-text">What do you need to do today?</span>
                 <br>
-                <input id="inputTask" type="text" name="task" placeholder="If you can imagine it, you can do it..."> <!-- randomise this with JS -->
+                <input id="inputTask" type="text" name="task" placeholder="If you can imagine it, you can do it...">
+                <!-- randomise this with JS -->
                 <p id="addUpdate"></p>
 
                 <button onclick="addTask()" class="btn" id="add-button">Add</button>
@@ -71,7 +75,7 @@
                 <h2 class="logo text-center">Eat the frog</h2>
 
                 <span class="info-text">Order from important to least important</span>
-                
+
                 <!-- Simple List -->
                 <ul id="simpleList" class="list-group">
                     <!--<li class="list-group-item task1">Task 1</li>
@@ -89,9 +93,10 @@
                 <p id="inspireText" class="info-text">First up</p>
                 <p id="focusTask"></p>
                 <div id="doControls">
-                    <button onclick="orderDiv()" class="btn">Back</button>
+                    <button onclick="orderDiv()" class="btn" id="back-button">Back</button>
                     <button onclick="finishedTask()" id="done-button" class="btn">Done</button>
                     <button onclick="skipTask()" id="skip-button" class="btn">Skip</button>
+                    <button onclick="addDiv()" id="add-more" class="btn">Add more</button>
 
                     <br><br>
                     <div class="progress">

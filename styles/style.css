@@ -34,6 +34,10 @@ margin-top: 10px;
     justify-content: center;
 }
 
+#add-more {
+    display: none;
+}
+
 /*
 .controls {
     align-items: center;
