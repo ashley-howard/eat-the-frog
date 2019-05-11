@@ -27,10 +27,11 @@
 - keep track of tasks and put them in a menu so they can see what they completed previous days?
 - create a pomodoro app too? (optional)
 - actually show inpsiring quotes from famous people
+- When click on frog, bring back home and write at top "Ribbet, time to get stuff done"
 -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand logo" href="#"><i class="fas fa-frog"></i></a>
+        <a class="navbar-brand" href="/"><i class="fas fa-frog"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -56,7 +57,8 @@
 
                 <h2 class="logo text-center">Eat the frog</h2>
 
-                What do you need to do today?<br>
+                <span class="info-text">What do you need to do today?</span>
+                <br>
                 <input id="inputTask" type="text" name="task">
                 <p id="addError"></p>
 
@@ -68,7 +70,8 @@
 
                 <h2 class="logo text-center">Eat the frog</h2>
 
-                Order from important to least important
+                <span class="info-text">Order from important to least important</span>
+                
                 <!-- Simple List -->
                 <ul id="simpleList" class="list-group">
                     <!--<li class="list-group-item task1">Task 1</li>
@@ -83,7 +86,7 @@
 
                 <h2 class="logo text-center">Eat the frog</h2>
 
-                <p id="inspireText">First up</p>
+                <p id="inspireText" class="info-text">First up</p>
                 <p id="focusTask"></p>
                 <div id="doControls">
                     <button onclick="orderDiv()" class="btn">Back</button>

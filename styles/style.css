@@ -2,9 +2,14 @@ body,html{
     text-align:center;
 }
 
+.container-fluid {
+    padding-top: 5%;
+}
+
 .logo {
     font-family: 'Patrick Hand SC', cursive;
     color: #44b444;
+    font-size: 2.5em;
 }
 
 .navbar, .progress-bar {
@@ -15,6 +20,17 @@ body,html{
      border-color: transparent !important; 
 }
 
+input#inputTask {
+    width: 100%;
+    padding: 5px;
+margin-top: 10px;
+}
+
+#simpleList {
+    padding-top: 10px;
+}
+
+/*
 .controls {
     align-items: center;
 }
@@ -29,6 +45,7 @@ body,html{
     color: #44b444!important;
     text-decoration: none!important;
 }
+*/
 
 .fa-frog{
     color: #fff;
@@ -38,6 +55,7 @@ body,html{
     background-color: #44b444;
     border-color: #44b444;
     color: #fff;
+    font-size: 1.1em;
 }
 
 .btn:hover {
@@ -46,6 +64,10 @@ body,html{
 
 p#focusTask {
     font-size: 1.7em;
+}
+
+.info-text {
+    font-size: 1.2em;
 }
 
 /*button#add-more {
