@@ -1,13 +1,55 @@
  // Simple list JS
  Sortable.create(simpleList, {  });
 
- var debug;
-
  var doneTask = document.getElementById("simpleList");
+
+ var todayTasks = [];
+ var tomorrowTasks = [];
+ var finishedTasks = [];
+
+ function debug(){
+  var debugMode = document.getElementById("debug-button"); 
+
+  // Turn on debug
+  if(debugMode.innerHTML === 'Debug: Off'){
+  // change text to say "on"
+  debugMode.innerHTML = 'Debug: On';
+
+  // show all hidden divs
+  var addSection = document.getElementById("add-section");
+  addSection.style.display = "block";
+
+  var orderSection = document.getElementById("order-section");
+  orderSection.style.display = "block";
+
+  var doSection = document.getElementById("do-section");
+  doSection.style.display = "block";
+
+  console.log('Debug On');
+  }
+
+  // Turn off debug
+  else if(debugMode.innerHTML === 'Debug: On'){
+  // change text to say "off"
+  debugMode.innerHTML = 'Debug: Off';
+
+  //hide all hidden divs
+  var addSection = document.getElementById("add-section");
+  addSection.style.display = "block";
+
+  var orderSection = document.getElementById("order-section");
+  orderSection.style.display = "none";
+
+  var doSection = document.getElementById("do-section");
+  doSection.style.display = "none";
+
+  console.log('Debug Off');
+  }
+ }
  
  function addTask() {   
-   var getTask = document.getElementById("inputTask").value;   
-   
+  var getTask = document.getElementById("inputTask").value; 
+        
    if (getTask !== ''){
       var task = document.createElement("li");
    task.classList.add('list-group-item');
@@ -15,6 +57,10 @@
    document.getElementById("simpleList").appendChild(task);
    document.getElementById('inputTask').value = "";
    document.getElementById("addError").innerHTML = "";
+
+   // add to todayTasks array
+   todayTasks.push(getTask);
+   console.log(`Today's tasks: ${todayTasks}`);
    }
    else{
    document.getElementById("addError").innerHTML = "Please type something";
@@ -23,11 +69,16 @@
 
  // Hide and show DIVS
  function finishAddTask(){
-    var addSection = document.getElementById("add-section");
-    addSection.style.display = "none";
-
-    var orderSection = document.getElementById("order-section");
-    orderSection.style.display = "block";
+    if(document.getElementById("simpleList").childElementCount >= 1){
+      var addSection = document.getElementById("add-section");
+      addSection.style.display = "none";
+  
+      var orderSection = document.getElementById("order-section");
+      orderSection.style.display = "block";
+    }
+    else{
+      document.getElementById("addError").innerHTML = "Please add something";
+    }
  }
  
  function doTasks(){ 
@@ -40,6 +91,9 @@ if (document.getElementById("simpleList").firstElementChild != undefined){
 
     var doSection = document.getElementById("do-section");
     doSection.style.display = "block";
+
+    //put inspire text back to normal 
+    //document.getElementById("inspireText").innerHTML = "";
 }
 else{
     document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
@@ -47,14 +101,40 @@ else{
  }
  
  function finishedTask(){
+  var progBar = document.getElementById("progress-bar");
+
    if(document.getElementById("simpleList").childElementCount > 1){
+
+    // Add to finishedTasks array and remove from todayTasks
+   finishedTasks.push(document.getElementById("focusTask").innerHTML);
+   console.log(`Finished tasks: ${finishedTasks}`);
+   // remove from array
+   var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
+    if (index > -1) {
+    todayTasks.splice(index, 1);
+    }
+
    doneTask.removeChild(doneTask.firstElementChild);
    
    doTasks();
    doneInspireText();
+
+   // update progress bar
+   
+
    }
+
    else if(document.getElementById("simpleList").childElementCount === 1){
-   document.getElementById("focusTask").innerHTML = ""; 
+      // Add to finishedTasks array and remove from todayTasks
+    finishedTasks.push(document.getElementById("focusTask").innerHTML);
+    console.log(`Finished tasks: ${finishedTasks}`);
+    // remove from array
+   var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
+   if (index > -1) {
+   todayTasks.splice(index, 1);
+   }
+
+    document.getElementById("focusTask").innerHTML = ""; 
      document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
      doneTask.removeChild(doneTask.firstElementChild)
 
@@ -65,8 +145,8 @@ else{
      doneButton.style.display = "none";
      skipButton.style.display = "none";
 
-     var addMoreButton = document.getElementById("add-more");
-     addMoreButton.style.display = "inline-block";
+    // var addMoreButton = document.getElementById("add-more");
+   //  addMoreButton.style.display = "inline-block";
    }
    else{
     console.log('Error');
@@ -94,13 +174,38 @@ else{
  }
  
  
- function addMore(){
-    var doSection = document.getElementById("do-section");
-    doSection.style.display = "none";
-
+ function addDiv(){
     var addSection = document.getElementById("add-section");
     addSection.style.display = "block";
+
+    var orderSection = document.getElementById("order-section");
+    orderSection.style.display = "none";
+
+    var doSection = document.getElementById("do-section");
+    doSection.style.display = "none";
  }
+
+ function orderDiv(){
+  var addSection = document.getElementById("add-section");
+  addSection.style.display = "none";
+
+  var orderSection = document.getElementById("order-section");
+  orderSection.style.display = "block";
+
+  var doSection = document.getElementById("do-section");
+  doSection.style.display = "none";
+}
+
+ function doDiv(){
+  var addSection = document.getElementById("add-section");
+  addSection.style.display = "none";
+
+  var orderSection = document.getElementById("order-section");
+  orderSection.style.display = "none";
+
+  var doSection = document.getElementById("do-section");
+  doSection.style.display = "block";
+}
  
   function doneInspireText(){
     var DoNo = Math.floor(Math.random() * 5);

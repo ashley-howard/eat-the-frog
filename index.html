@@ -9,9 +9,12 @@
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/style.css">
 
-    <title>Hello, world!</title>
+    <title>Eat the frog</title>
 </head>
 
 <body>
@@ -23,22 +26,48 @@
 - give task ID name exact as what it is
 - keep track of tasks and put them in a menu so they can see what they completed previous days?
 - create a pomodoro app too? (optional)
+- actually show inpsiring quotes from famous people
 -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand logo" href="#"><i class="fas fa-frog"></i></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="debug()" id="debug-button">Debug: Off</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 col-sm-4" id="add-section">
-                <h2 class="text-center">1: Add</h2>
+
+                <h2 class="logo text-center">Eat the frog</h2>
+
                 What do you need to do today?<br>
                 <input id="inputTask" type="text" name="task">
                 <p id="addError"></p>
 
-                <button onclick="addTask()">Add</button>
-                <button onclick="finishAddTask()" id="finish-add-button">Finished</button>
+                <button onclick="addTask()" class="btn">Add</button>
+                <button onclick="finishAddTask()" id="finish-add-button" class="btn">Finished</button>
 
             </div>
             <div class="col-12 col-sm-4" id="order-section">
-                <h2 class="text-center">2: Order</h2>
+
+                <h2 class="logo text-center">Eat the frog</h2>
+
                 Order from important to least important
                 <!-- Simple List -->
                 <ul id="simpleList" class="list-group">
@@ -47,22 +76,45 @@
                     <li class="list-group-item task3">Task 3</li>-->
                 </ul>
                 <br>
-                <button onclick="">Back</button>
-                <button onclick="doTasks()">Next</button><br>
+                <button onclick="addDiv()" class="btn">Back</button>
+                <button onclick="doTasks()" class="btn">Next</button><br>
             </div>
             <div class="col-12 col-sm-4" id="do-section">
-                <h2 class="text-center">3: Do</h2>
+
+                <h2 class="logo text-center">Eat the frog</h2>
+
                 <p id="inspireText">First up</p>
                 <p id="focusTask"></p>
                 <div id="doControls">
-                    <button onclick="finishedTask()" id="done-button">Done</button>
-                    <button onclick="skipTask()" id="skip-button">Skip</button>
-                    <button onclick="addMore()" id="add-more">Go back</button>
+                    <button onclick="orderDiv()" class="btn">Back</button>
+                    <button onclick="finishedTask()" id="done-button" class="btn">Done</button>
+                    <button onclick="skipTask()" id="skip-button" class="btn">Skip</button>
+
+                    <br><br>
+                    <div class="progress">
+                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"
+                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 
+
+    <!-- OLD CODE
+                <div class="row controls">
+                    <div class="col-1">
+                        <a onclick="addDiv()" class="arrows"><i class="fas fa-arrow-left"></i></a>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="logo text-center">Eat the frog</h2>
+                    </div>
+                    <div class="col-1">
+                        <a onclick="doDiv()" class="arrows"><i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+-->
 
 
 

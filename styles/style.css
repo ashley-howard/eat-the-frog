@@ -2,6 +2,63 @@ body,html{
     text-align:center;
 }
 
-button#add-more, #order-section, #do-section {
+.logo {
+    font-family: 'Patrick Hand SC', cursive;
+    color: #44b444;
+}
+
+.navbar, .progress-bar {
+    background-color: #44b444!important;
+}
+
+.navbar-toggler {
+     border-color: transparent !important; 
+}
+
+.controls {
+    align-items: center;
+}
+
+.arrows {
+    display: flex;
+    justify-content: center;
+    color: #44b444 !important;
+}
+
+.arrows:hover, .arrows:focus {
+    color: #44b444!important;
+    text-decoration: none!important;
+}
+
+.fa-frog{
+    color: #fff;
+}
+
+.btn {
+    background-color: #44b444;
+    border-color: #44b444;
+    color: #fff;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+p#focusTask {
+    font-size: 1.7em;
+}
+
+/*button#add-more {
     display: none;
+}*/
+
+ /*---for debugging---
+#add-section {
+    display: block !important;
+}
+------------------*/
+
+#order-section, #do-section {
+    display: none;
+   /* display: block !important; for debugging*/
 }
