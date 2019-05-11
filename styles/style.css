@@ -3,7 +3,7 @@ body,html{
 }
 
 .container-fluid {
-    padding-top: 5%;
+    padding-top: 2em;
 }
 
 .logo {
@@ -28,6 +28,10 @@ margin-top: 10px;
 
 #simpleList {
     padding-top: 10px;
+}
+
+.row.main {
+    justify-content: center;
 }
 
 /*
