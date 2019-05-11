@@ -6,10 +6,46 @@
  var todayTasks = [];
  var tomorrowTasks = [];
  var finishedTasks = [];
+ var simpleListArr = document.getElementById("simpleList");
 
  var addMoreButton = document.getElementById("add-more");
  var mainButtons = document.getElementById("main-buttons");
  var ribbetText = document.getElementById("ribbet");
+
+
+ /*////////////////////// storage /////////////// /*
+var addButton = document.getElementById("add-button");
+var getSavedTasks = localStorage.getItem("tasks");
+var task = document.createElement("li");
+var addingTask = task.classList.add('list-group-item');
+
+
+addButton.addEventListener('click', function() {
+
+ //localStorage.setItem("tasks", JSON.stringify(simpleListArr.appendChild(task)));
+ 
+ localStorage.setItem('tasks', simpleListArr.appendChild(addingTask));
+
+});
+
+// if localstorage not empty, show "do" div and retrieve everything
+if (getSavedTasks !== null) {
+  doDiv();
+
+ // document.getElementById("simpleList").innerHTML = parseSavedTasks;
+
+  var getTask2 = getSavedTasks; 
+  
+  //var task = document.createElement("li");
+  //task.classList.add('list-group-item');
+ // addingTask.innerHTML = getTask2;
+  //document.getElementById("simpleList").appendChild(addingTask);
+
+  doTasks();
+}
+
+
+/*///////////////////////////////////////////////////////
 
 
  window.onload = function() {
@@ -108,6 +144,12 @@ if (document.getElementById("simpleList").firstElementChild != undefined){
     var doSection = document.getElementById("do-section");
     doSection.style.display = "block";
 
+    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    var progBar = document.getElementById("progress-bar");
+
+    progBar.style = `width: ${calcProg * 100}%;`; 
+    progBar.innerHTML = `${todayTasks.length} to go`;
+
     //put inspire text back to normal 
     //document.getElementById("inspireText").innerHTML = "";
 }
@@ -118,9 +160,11 @@ else{
  
  function finishedTask(){
   var progBar = document.getElementById("progress-bar");
+  //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+  //var roundedCalcProg = Math.trunc(calcProg * 100);
 
    if(document.getElementById("simpleList").childElementCount > 1){
-
+    progBar.innerHTML = `${todayTasks.length} to go`; 
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
    console.log(`Finished tasks: ${finishedTasks}`);
@@ -136,15 +180,20 @@ else{
    doneInspireText();
 
    // update progress bar
-
+    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    progBar.style = `width: ${calcProg * 100}%;`; 
+    progBar.innerHTML = `${todayTasks.length} to go`; 
    
    if(document.getElementById("simpleList").childElementCount === 1){
     document.getElementById("inspireText").innerHTML = "Last one!";
+    progBar.innerHTML = `${todayTasks.length - 1} to go!`; 
    }
 
    }
 
    else if(document.getElementById("simpleList").childElementCount === 1){
+    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    progBar.style = `width: ${calcProg * 100}%;`; 
       // Add to finishedTasks array and remove from todayTasks
     finishedTasks.push(document.getElementById("focusTask").innerHTML);
     console.log(`Finished tasks: ${finishedTasks}`);
@@ -161,7 +210,9 @@ else{
      // remove buttons and have a "back" button that goes go back the "add" screen
      addMoreButton.style.display = "inline-block";
      mainButtons.style.display = "none";
-     
+     //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    progBar.style = `width: 100%;`; 
+    progBar.innerHTML = `Everything complete!`;  
    }
    else{
     console.log('Error');
@@ -218,6 +269,12 @@ else{
 
     // focus on text box
     document.getElementById("inputTask").focus();
+
+    // reset progbar
+    var progBar = document.getElementById("progress-bar");
+
+    progBar.style = `width: 0%;`; 
+    progBar.innerHTML = `Add tasks to get started`;
 
  }
 
