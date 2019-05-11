@@ -10,6 +10,11 @@
  var addMoreButton = document.getElementById("add-more");
  var mainButtons = document.getElementById("main-buttons");
 
+
+ window.onload = function() {
+  document.getElementById("inputTask").focus();
+};
+
  function debug(){
   var debugMode = document.getElementById("debug-button"); 
 
@@ -126,7 +131,11 @@ else{
    doneInspireText();
 
    // update progress bar
+
    
+   if(document.getElementById("simpleList").childElementCount === 1){
+    document.getElementById("inspireText").innerHTML = "Last one!";
+   }
 
    }
 
@@ -147,6 +156,7 @@ else{
      // remove buttons and have a "back" button that goes go back the "add" screen
      addMoreButton.style.display = "inline-block";
      mainButtons.style.display = "none";
+     
    }
    else{
     console.log('Error');
@@ -192,6 +202,9 @@ else{
 
     // Have "Do" text back to standard
     document.getElementById("inspireText").innerHTML = "Let's go.";
+
+    // focus on text box
+    document.getElementById("inputTask").focus();
 
  }
 
