@@ -254,3 +254,12 @@ else{
         document.getElementById("inspireText").innerHTML = "Error";
     }
   }
+
+  // Enter key
+  document.getElementById("inputTask")
+  .addEventListener("keyup", function(event) {
+  event.preventDefault();
+  if (event.keyCode === 13) {
+      document.getElementById("add-button").click();
+  }
+});
