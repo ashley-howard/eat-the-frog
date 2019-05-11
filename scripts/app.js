@@ -56,14 +56,17 @@
    task.innerHTML = getTask;
    document.getElementById("simpleList").appendChild(task);
    document.getElementById('inputTask').value = "";
-   document.getElementById("addError").innerHTML = "";
+   document.getElementById("addUpdate").innerHTML = "";
+
+   // "added" visual feedback and remove after 2 seconds
+   document.getElementById("addUpdate").innerHTML = `"${getTask}" has been added!`;
 
    // add to todayTasks array
    todayTasks.push(getTask);
    console.log(`Today's tasks: ${todayTasks}`);
    }
    else{
-   document.getElementById("addError").innerHTML = "Please type something";
+   document.getElementById("addUpdate").innerHTML = "Please type something";
    }
  }
 
@@ -77,7 +80,7 @@
       orderSection.style.display = "block";
     }
     else{
-      document.getElementById("addError").innerHTML = "Please add something";
+      document.getElementById("addUpdate").innerHTML = "Please add something";
     }
  }
  
@@ -183,6 +186,8 @@ else{
 
     var doSection = document.getElementById("do-section");
     doSection.style.display = "none";
+
+    document.getElementById("addUpdate").innerHTML = "";
  }
 
  function orderDiv(){
