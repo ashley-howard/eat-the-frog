@@ -9,6 +9,7 @@
 
  var addMoreButton = document.getElementById("add-more");
  var mainButtons = document.getElementById("main-buttons");
+ var ribbetText = document.getElementById("ribbet");
 
 
  window.onload = function() {
@@ -67,7 +68,11 @@
    document.getElementById("addUpdate").innerHTML = "";
 
    // "added" visual feedback and remove after 2 seconds
-   document.getElementById("addUpdate").innerHTML = `"${getTask}" has been added!`;
+   var confirmText = document.getElementById("addUpdate").innerHTML = `"${getTask}" has been added!`;
+   setTimeout(function(){
+   confirmText = document.getElementById("addUpdate").innerHTML = "";
+  }, 2000);
+
 
    // add to todayTasks array
    todayTasks.push(getTask);
@@ -181,6 +186,14 @@ else{
     document.getElementById("focusTask").innerHTML = focusTask;
 
    skipInspireText();
+ }
+
+ function ribbet(){
+  
+  ribbetText.style.display = "inline-block";
+  setTimeout(function(){
+    $('#ribbet').remove();
+  }, 5000);
  }
  
  

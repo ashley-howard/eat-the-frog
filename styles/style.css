@@ -12,6 +12,13 @@ body,html{
     font-size: 2.5em;
 }
 
+#ribbet {
+    display: none;
+    color: #fff;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
 .navbar, .progress-bar {
     background-color: #44b444!important;
 }
