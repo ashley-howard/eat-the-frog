@@ -21,42 +21,6 @@
     return Math.trunc((finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length) * 100));
    }
 
-
- /*////////////////////// storage /////////////// /*
-var addButton = document.getElementById("add-button");
-var getSavedTasks = localStorage.getItem("tasks");
-var task = document.createElement("li");
-var addingTask = task.classList.add('list-group-item');
-
-
-addButton.addEventListener('click', function() {
-
- //localStorage.setItem("tasks", JSON.stringify(simpleListArr.appendChild(task)));
- 
- localStorage.setItem('tasks', simpleListArr.appendChild(addingTask));
-
-});
-
-// if localstorage not empty, show "do" div and retrieve everything
-if (getSavedTasks !== null) {
-  doDiv();
-
- // document.getElementById("simpleList").innerHTML = parseSavedTasks;
-
-  var getTask2 = getSavedTasks; 
-  
-  //var task = document.createElement("li");
-  //task.classList.add('list-group-item');
- // addingTask.innerHTML = getTask2;
-  //document.getElementById("simpleList").appendChild(addingTask);
-
-  doTasks();
-}
-
-
-/*///////////////////////////////////////////////////////
-
-
  window.onload = function() {
   document.getElementById("inputTask").focus();
 };
