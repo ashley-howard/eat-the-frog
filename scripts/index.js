@@ -13,6 +13,11 @@
  var mainButtons = document.getElementById("main-buttons");
  var ribbetText = document.getElementById("ribbet");
 
+  const addScreen = document.getElementById("add-section");
+  const orderScreen = document.getElementById("order-section");
+  const doScreen = document.getElementById("do-section");
+
+
 
  /*////////////////////// storage /////////////// /*
 var addButton = document.getElementById("add-button");
@@ -62,14 +67,7 @@ if (getSavedTasks !== null) {
   debugMode.innerHTML = 'Debug: On';
 
   // show all hidden divs
-  var addSection = document.getElementById("add-section");
-  addSection.style.display = "block";
-
-  var orderSection = document.getElementById("order-section");
-  orderSection.style.display = "block";
-
-  var doSection = document.getElementById("do-section");
-  doSection.style.display = "block";
+  changeScreen('debug');
 
   console.log('Debug On');
   }
@@ -80,14 +78,7 @@ if (getSavedTasks !== null) {
   debugMode.innerHTML = 'Debug: Off';
 
   //hide all hidden divs
-  var addSection = document.getElementById("add-section");
-  addSection.style.display = "block";
-
-  var orderSection = document.getElementById("order-section");
-  orderSection.style.display = "none";
-
-  var doSection = document.getElementById("do-section");
-  doSection.style.display = "none";
+  changeScreen('add');
 
   console.log('Debug Off');
   }
@@ -135,11 +126,7 @@ if (getSavedTasks !== null) {
  // Hide and show DIVS
  function finishAddTask(){
     if(document.getElementById("simpleList").childElementCount >= 1){
-      var addSection = document.getElementById("add-section");
-      addSection.style.display = "none";
-  
-      var orderSection = document.getElementById("order-section");
-      orderSection.style.display = "block";
+      changeScreen('order');
     }
     else{
       document.getElementById("addUpdate").innerHTML = "Please add something";
@@ -151,11 +138,7 @@ if (document.getElementById("simpleList").children.length >= 1){
     var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
     document.getElementById("focusTask").innerHTML = focusTask;
 
-    var orderSection = document.getElementById("order-section");
-    orderSection.style.display = "none";
-
-    var doSection = document.getElementById("do-section");
-    doSection.style.display = "block";
+    changeScreen('do');
 
     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     var progBar = document.getElementById("progress-bar");
@@ -163,8 +146,6 @@ if (document.getElementById("simpleList").children.length >= 1){
     progBar.style = `width: ${calcProg * 100}%;`; 
     progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`;
 
-    //put inspire text back to normal 
-    //document.getElementById("inspireText").innerHTML = "";
 }
 else{
     document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
@@ -180,12 +161,6 @@ else{
     progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
- 
-   // remove from array
-  // var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
-   // if (index > -1) {
-   // todayTasks.splice(index, 1);
-   // }
 
    doneTask.removeChild(doneTask.firstElementChild);
   // doneTask.removeChild(doneTask.childNodes[0]);
@@ -199,15 +174,6 @@ else{
    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     progBar.style = `width: ${calcProg * 100}%`; 
     progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
-   
-   /*if(document.getElementById("simpleList").childElementCount === 1){
-    document.getElementById("inspireText").innerHTML = "Last one!";
-    progBar.innerHTML = `${todayTasks.length - 1} to go!`; 
-
-    //??????????????
-    finishedTasks.push(document.getElementById("focusTask").innerHTML);
-   //todayTasks.shift();
-   }*/
 
    }
 
@@ -219,18 +185,8 @@ else{
     finishedTasks.push(document.getElementById("focusTask").innerHTML);
     doneTask.removeChild(doneTask.firstElementChild);
     todayTasks.shift();
-   // doneTask.removeChild(doneTask.firstElementChild);
-  // doneTask.removeChild(doneTask.childNodes[0]);
-   //todayTasks.shift();
 
-    console.log(`Finished tasks: ${finishedTasks}`);
-    // remove from array
-  // var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
-  // if (index > -1) {
-  //todayTasks.splice(index, 1);
-  // }
-
-   
+    console.log(`Finished tasks: ${finishedTasks}`); 
 
     document.getElementById("focusTask").innerHTML = ""; 
      document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
@@ -251,10 +207,8 @@ else{
     completedResults.innerHTML = `Completed: ${finishedTasks.length}`;
 
     skippedResults.innerHTML = `Skipped: ${skippedTasks.length}`;
-    
-    
-
    }
+
    else{
     console.log('Error');
     }
@@ -301,50 +255,19 @@ doneTask.removeChild(doneTask.firstElementChild);
 doTasks();
 }
 
-  /* // if press "skip", move to new array called "Skipped"
-  if (document.getElementById("simpleList").children.length === 1){
-
-  }
-
-  else{
-    var task = document.createElement("li");
-    var duplicateTask = document.getElementById("simpleList").firstElementChild.innerHTML;
-  
-  // add to bottom
-    task.classList.add('list-group-item');
-    task.innerHTML = duplicateTask;
-    document.getElementById("simpleList").appendChild(task);
- 
-  // remove top task
-    var skippedTask = document.getElementById("simpleList");
-    
-   skippedTask.removeChild(skippedTask.firstElementChild);
- 
-   var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
-     document.getElementById("focusTask").innerHTML = focusTask;
- 
-    skipInspireText();
-  }*/
-
  }
 
- function ribbet(){  
+ function ribbet(){
+  
   ribbetText.innerHTML = "Ribbet! Time to get stuff done!";
   setTimeout(function(){
-    ribbetText = "";
+    ribbetText.innerHTML = "";
  }, 3000);
  }
  
  
  function addDiv(){
-    var addSection = document.getElementById("add-section");
-    addSection.style.display = "block";
-
-    var orderSection = document.getElementById("order-section");
-    orderSection.style.display = "none";
-
-    var doSection = document.getElementById("do-section");
-    doSection.style.display = "none";
+     changeScreen('add');
 
     document.getElementById("addUpdate").innerHTML = "";
 
@@ -367,25 +290,11 @@ doTasks();
  }
 
  function orderDiv(){
-  var addSection = document.getElementById("add-section");
-  addSection.style.display = "none";
-
-  var orderSection = document.getElementById("order-section");
-  orderSection.style.display = "block";
-
-  var doSection = document.getElementById("do-section");
-  doSection.style.display = "none";
+  changeScreen('order');
 }
 
  function doDiv(){
-  var addSection = document.getElementById("add-section");
-  addSection.style.display = "none";
-
-  var orderSection = document.getElementById("order-section");
-  orderSection.style.display = "none";
-
-  var doSection = document.getElementById("do-section");
-  doSection.style.display = "block";
+  changeScreen('do');
 }
  
   function doneInspireText(){
@@ -436,10 +345,6 @@ doTasks();
     }
   }
 
-
-
-
-
   // Enter key
   document.getElementById("inputTask")
   .addEventListener("keyup", function(event) {
@@ -449,3 +354,27 @@ doTasks();
   }
 });
 
+function changeScreen(div){
+  if (div === 'add'){
+    addScreen.style.display = "block";
+    orderScreen.style.display = "none";
+    doScreen.style.display = "none";
+  }
+
+  else if (div === 'order'){
+    addScreen.style.display = "none";
+    orderScreen.style.display = "block";
+    doScreen.style.display = "none";
+  }
+
+  else if (div === 'do'){
+    addScreen.style.display = "none";
+    orderScreen.style.display = "none";
+    doScreen.style.display = "block";
+  }
+  else if (div === 'debug'){
+    addScreen.style.display = "block";
+    orderScreen.style.display = "block";
+    doScreen.style.display = "block";
+  }
+  }
