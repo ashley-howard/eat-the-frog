@@ -134,7 +134,7 @@ if (getSavedTasks !== null) {
  }
  
  function doTasks(){ 
-if (document.getElementById("simpleList").firstElementChild != undefined){
+if (document.getElementById("simpleList").children.length >= 1){
     var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
     document.getElementById("focusTask").innerHTML = focusTask;
 
@@ -160,59 +160,80 @@ else{
  
  function finishedTask(){
   var progBar = document.getElementById("progress-bar");
-  //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+  var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
   //var roundedCalcProg = Math.trunc(calcProg * 100);
 
-   if(document.getElementById("simpleList").childElementCount > 1){
+   if(document.getElementById("simpleList").children.length > 1){
     progBar.innerHTML = `${todayTasks.length} to go`; 
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
-   console.log(`Finished tasks: ${finishedTasks}`);
+ 
    // remove from array
-   var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
-    if (index > -1) {
-    todayTasks.splice(index, 1);
-    }
+  // var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
+   // if (index > -1) {
+   // todayTasks.splice(index, 1);
+   // }
 
    doneTask.removeChild(doneTask.firstElementChild);
-   
+  // doneTask.removeChild(doneTask.childNodes[0]);
+   todayTasks.shift();
    doTasks();
+   
+  // doTasks();
    doneInspireText();
-
+   console.log(`Finished tasks: ${finishedTasks}`);
    // update progress bar
     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
-    progBar.style = `width: ${calcProg * 100}%;`; 
+    progBar.style = `width: ${calcProg * 100}%`; 
     progBar.innerHTML = `${todayTasks.length} to go`; 
    
-   if(document.getElementById("simpleList").childElementCount === 1){
+   /*if(document.getElementById("simpleList").childElementCount === 1){
     document.getElementById("inspireText").innerHTML = "Last one!";
     progBar.innerHTML = `${todayTasks.length - 1} to go!`; 
-   }
+
+    //??????????????
+    finishedTasks.push(document.getElementById("focusTask").innerHTML);
+   //todayTasks.shift();
+   }*/
 
    }
 
-   else if(document.getElementById("simpleList").childElementCount === 1){
+   else if(document.getElementById("simpleList").children.length === 1){
     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
     progBar.style = `width: ${calcProg * 100}%;`; 
       // Add to finishedTasks array and remove from todayTasks
+      doTasks();
     finishedTasks.push(document.getElementById("focusTask").innerHTML);
+    doneTask.removeChild(doneTask.firstElementChild);
+    todayTasks.shift();
+   // doneTask.removeChild(doneTask.firstElementChild);
+  // doneTask.removeChild(doneTask.childNodes[0]);
+   //todayTasks.shift();
+
     console.log(`Finished tasks: ${finishedTasks}`);
     // remove from array
-   var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
-   if (index > -1) {
-   todayTasks.splice(index, 1);
-   }
+  // var index = finishedTasks.indexOf(document.getElementById("focusTask").innerHTML);
+  // if (index > -1) {
+  //todayTasks.splice(index, 1);
+  // }
+
+   
 
     document.getElementById("focusTask").innerHTML = ""; 
      document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
-     doneTask.removeChild(doneTask.firstElementChild)
 
      // remove buttons and have a "back" button that goes go back the "add" screen
      addMoreButton.style.display = "inline-block";
      mainButtons.style.display = "none";
-     //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
     progBar.style = `width: 100%;`; 
     progBar.innerHTML = `Everything complete!`;  
+
+
+    // reset arrays
+     todayTasks = [];
+     finishedTasks = [];
+
    }
    else{
     console.log('Error');
