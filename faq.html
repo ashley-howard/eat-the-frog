@@ -2,11 +2,9 @@
 <html lang='en'>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
 
-    <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'
         integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
     <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
@@ -21,21 +19,8 @@
 
 <body>
 
-    <!-- Bugs/Fixes 
-- "Finished" goes to next stage
-- clicking "skip" moves task to bottom and then retrieves the new first "first child element"
-- When "do" list is finished, remove "doControls" div, and replace with another div with another button?
-- give task ID name exact as what it is
-- keep track of tasks and put them in a menu so they can see what they completed previous days?
-- create a pomodoro app too? (optional)
-- actually show inpsiring quotes from famous people
-- When click on frog, bring back home and write at top "Ribbet, time to get stuff done"
-
--->
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" onclick="ribbet()"><i class="fas fa-frog"></i><span id="ribbet">Ribbet! Time to get
-                stuff done!</span></a>
+        <a class="navbar-brand" onclick="ribbet()"><i class="fas fa-frog"></i><span id="ribbet"></span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -76,8 +61,6 @@
         </div>
     </div>
 
-
-    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'
         integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo'

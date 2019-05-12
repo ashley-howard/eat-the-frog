@@ -328,12 +328,11 @@ doTasks();
 
  }
 
- function ribbet(){
-  
+ function ribbet(){  
   ribbetText.innerHTML = "Ribbet! Time to get stuff done!";
   setTimeout(function(){
-    $('#ribbet').remove();
- }, 5000);
+    ribbetText = "";
+ }, 3000);
  }
  
  
