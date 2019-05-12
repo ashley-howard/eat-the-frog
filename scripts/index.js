@@ -17,7 +17,10 @@
   const orderScreen = document.getElementById("order-section");
   const doScreen = document.getElementById("do-section");
 
-
+  const progBar = document.getElementById("progress-bar");
+  const progCalc = () => {
+    return Math.trunc((finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length) * 100));
+   }
 
  /*////////////////////// storage /////////////// /*
 var addButton = document.getElementById("add-button");
@@ -139,11 +142,8 @@ if (document.getElementById("simpleList").children.length >= 1){
     document.getElementById("focusTask").innerHTML = focusTask;
 
     changeScreen('do');
-
-    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
-    var progBar = document.getElementById("progress-bar");
-
-    progBar.style = `width: ${calcProg * 100}%;`; 
+  
+    progBar.style = `width: ${progCalc()}%;`; 
     progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`;
 
 }
@@ -153,33 +153,27 @@ else{
  }
  
  function finishedTask(){
-  var progBar = document.getElementById("progress-bar");
-  var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
-  //var roundedCalcProg = Math.trunc(calcProg * 100);
-
+  
    if(document.getElementById("simpleList").children.length > 1){
-    progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
 
    doneTask.removeChild(doneTask.firstElementChild);
-  // doneTask.removeChild(doneTask.childNodes[0]);
    todayTasks.shift();
    doTasks();
    
   // doTasks();
    doneInspireText();
    console.log(`Finished tasks: ${finishedTasks}`);
+
    // update progress bar
-   var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
-    progBar.style = `width: ${calcProg * 100}%`; 
+    progBar.style = `width: ${progCalc()}%`; 
     progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
 
    }
 
    else if(document.getElementById("simpleList").children.length === 1){
-    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
-    progBar.style = `width: ${calcProg * 100}%;`; 
+    progBar.style = `width: ${progCalc()}%;`; 
       // Add to finishedTasks array and remove from todayTasks
       doTasks();
     finishedTasks.push(document.getElementById("focusTask").innerHTML);
@@ -194,7 +188,6 @@ else{
      // remove buttons and have a "back" button that goes go back the "add" screen
      addMoreButton.style.display = "inline-block";
      mainButtons.style.display = "none";
-     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     progBar.style = `width: 100%;`; 
     progBar.innerHTML = `Everything complete!`;  
 
@@ -227,8 +220,7 @@ if (lastTask === 1){
   // remove buttons and have a "back" button that goes go back the "add" screen
   addMoreButton.style.display = "inline-block";
   mainButtons.style.display = "none";
-  //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
-  var progBar = document.getElementById("progress-bar");
+
  progBar.style = `width: 100%;`; 
  progBar.innerHTML = `Everything complete!`;  
 
@@ -281,21 +273,9 @@ doTasks();
     // focus on text box
     document.getElementById("inputTask").focus();
 
-    // reset progbar
-    var progBar = document.getElementById("progress-bar");
-
     progBar.style = `width: 0%;`; 
     progBar.innerHTML = `Add tasks to get started`;
-
  }
-
- function orderDiv(){
-  changeScreen('order');
-}
-
- function doDiv(){
-  changeScreen('do');
-}
  
   function doneInspireText(){
     var DoNo = Math.floor(Math.random() * 5);
