@@ -18,6 +18,11 @@ body,html{
     margin-left: 10px;
 }
 
+#results {
+    display: none;
+    padding-bottom: 10px;
+}
+
 .navbar, .progress-bar {
     background-color: #44b444!important;
 }

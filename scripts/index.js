@@ -120,6 +120,18 @@ if (getSavedTasks !== null) {
    }
  }
 
+ function addAndReset(){
+  todayTasks = [];
+  finishedTasks = [];
+  skippedTasks = [];
+  addDiv();
+
+  //hide results
+  var results = document.getElementById("results")
+    results.style.display = "none";
+ }
+
+
  // Hide and show DIVS
  function finishAddTask(){
     if(document.getElementById("simpleList").childElementCount >= 1){
@@ -230,10 +242,16 @@ else{
     progBar.style = `width: 100%;`; 
     progBar.innerHTML = `Everything complete!`;  
 
+    // show results
+    var results = document.getElementById("results")
+    results.style.display = "block";
+    var completedResults = document.getElementById("completed-tasks");
+    var skippedResults = document.getElementById("skipped-tasks");
 
-    // reset arrays
-     todayTasks = [];
-     finishedTasks = [];
+    completedResults.innerHTML = `Completed: ${finishedTasks.length}`;
+    skippedResults.innerHTML = `Skipped: ${skippedTasks.length}`;
+
+    
 
    }
    else{
@@ -245,7 +263,7 @@ else{
   var lastTask = document.getElementById("simpleList").children.length;
 if (lastTask === 1){
 
-  skippedTasks.push(focusTask);
+  skippedTasks.push(focusTask.innerHTML);
   doneTask.removeChild(doneTask.firstElementChild);
 
   document.getElementById("focusTask").innerHTML = ""; 
@@ -259,14 +277,21 @@ if (lastTask === 1){
  progBar.style = `width: 100%;`; 
  progBar.innerHTML = `Everything complete!`;  
 
+    // show results
+    var results = document.getElementById("results")
+    results.style.display = "block";
+    var completedResults = document.getElementById("completed-tasks");
+    var skippedResults = document.getElementById("skipped-tasks");
 
+    completedResults.innerHTML = `Completed: ${finishedTasks.length}`;
+    skippedResults.innerHTML = `Skipped: ${skippedTasks.length}`;
 
 }
 
 else{
 // if press "skip", move to new array called "Skipped"
 
-skippedTasks.push(focusTask);
+skippedTasks.push(focusTask.innerHTML);
 
 //then remove from today's tasks
 doneTask.removeChild(doneTask.firstElementChild);
