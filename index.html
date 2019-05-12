@@ -26,6 +26,9 @@
 - keep track of tasks and put them in a menu so they can see what they completed previous days?
 - actually show inpsiring quotes from famous people
 - There-s a bug with the array. It will always leave one element in the "todayTasks", meaning the progress bar doesnt work well. I made a workaround, but should fix it
+- At the bottom when you're finished, show "Completed tasks: 5, Skipped tasks: 5"
+- have another button called "Do later" which add to bottom of list, while skip just removes it
+
 -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -98,7 +101,7 @@
 
                     <br><br>
                     <div class="progress">
-                        <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"
+                        <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;"
                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Add tasks to get started</div>
                     </div>
 

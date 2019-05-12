@@ -6,6 +6,7 @@
  var todayTasks = [];
  var tomorrowTasks = [];
  var finishedTasks = [];
+ var skippedTasks = [];
  var simpleListArr = document.getElementById("simpleList");
 
  var addMoreButton = document.getElementById("add-more");
@@ -144,11 +145,11 @@ if (document.getElementById("simpleList").children.length >= 1){
     var doSection = document.getElementById("do-section");
     doSection.style.display = "block";
 
-    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     var progBar = document.getElementById("progress-bar");
 
     progBar.style = `width: ${calcProg * 100}%;`; 
-    progBar.innerHTML = `${todayTasks.length} to go`;
+    progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`;
 
     //put inspire text back to normal 
     //document.getElementById("inspireText").innerHTML = "";
@@ -160,11 +161,11 @@ else{
  
  function finishedTask(){
   var progBar = document.getElementById("progress-bar");
-  var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+  var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
   //var roundedCalcProg = Math.trunc(calcProg * 100);
 
    if(document.getElementById("simpleList").children.length > 1){
-    progBar.innerHTML = `${todayTasks.length} to go`; 
+    progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
  
@@ -183,9 +184,9 @@ else{
    doneInspireText();
    console.log(`Finished tasks: ${finishedTasks}`);
    // update progress bar
-    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+   var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     progBar.style = `width: ${calcProg * 100}%`; 
-    progBar.innerHTML = `${todayTasks.length} to go`; 
+    progBar.innerHTML = `${todayTasks.length - skippedTasks.length} to go`; 
    
    /*if(document.getElementById("simpleList").childElementCount === 1){
     document.getElementById("inspireText").innerHTML = "Last one!";
@@ -199,7 +200,7 @@ else{
    }
 
    else if(document.getElementById("simpleList").children.length === 1){
-    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+    var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     progBar.style = `width: ${calcProg * 100}%;`; 
       // Add to finishedTasks array and remove from todayTasks
       doTasks();
@@ -225,7 +226,7 @@ else{
      // remove buttons and have a "back" button that goes go back the "add" screen
      addMoreButton.style.display = "inline-block";
      mainButtons.style.display = "none";
-     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length);
+     var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
     progBar.style = `width: 100%;`; 
     progBar.innerHTML = `Everything complete!`;  
 
@@ -241,23 +242,41 @@ else{
  }
  
  function skipTask(){
-   var task = document.createElement("li");
-   var duplicateTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+// if press "skip", move to new array called "Skipped"
+var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+skippedTasks.push(focusTask);
+
+//then remove from today's tasks
+doneTask.removeChild(doneTask.firstElementChild);
+
+//then remove from list and do next thing
+doTasks();
+
+  /* // if press "skip", move to new array called "Skipped"
+  if (document.getElementById("simpleList").children.length === 1){
+
+  }
+
+  else{
+    var task = document.createElement("li");
+    var duplicateTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+  
+  // add to bottom
+    task.classList.add('list-group-item');
+    task.innerHTML = duplicateTask;
+    document.getElementById("simpleList").appendChild(task);
  
- // add to bottom
-   task.classList.add('list-group-item');
-   task.innerHTML = duplicateTask;
-   document.getElementById("simpleList").appendChild(task);
+  // remove top task
+    var skippedTask = document.getElementById("simpleList");
+    
+   skippedTask.removeChild(skippedTask.firstElementChild);
+ 
+   var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+     document.getElementById("focusTask").innerHTML = focusTask;
+ 
+    skipInspireText();
+  }*/
 
- // remove top task
-   var skippedTask = document.getElementById("simpleList");
-   
-  skippedTask.removeChild(skippedTask.firstElementChild);
-
-  var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
-    document.getElementById("focusTask").innerHTML = focusTask;
-
-   skipInspireText();
  }
 
  function ribbet(){
