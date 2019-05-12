@@ -249,8 +249,9 @@ else{
     var skippedResults = document.getElementById("skipped-tasks");
 
     completedResults.innerHTML = `Completed: ${finishedTasks.length}`;
-    skippedResults.innerHTML = `Skipped: ${skippedTasks.length}`;
 
+    skippedResults.innerHTML = `Skipped: ${skippedTasks.length}`;
+    
     
 
    }
@@ -435,6 +436,10 @@ doTasks();
         document.getElementById("inspireText").innerHTML = "Error";
     }
   }
+
+
+
+
 
   // Enter key
   document.getElementById("inputTask")
