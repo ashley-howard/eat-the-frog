@@ -242,8 +242,30 @@ else{
  }
  
  function skipTask(){
+  var lastTask = document.getElementById("simpleList").children.length;
+if (lastTask === 1){
+
+  skippedTasks.push(focusTask);
+  doneTask.removeChild(doneTask.firstElementChild);
+
+  document.getElementById("focusTask").innerHTML = ""; 
+  document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
+
+  // remove buttons and have a "back" button that goes go back the "add" screen
+  addMoreButton.style.display = "inline-block";
+  mainButtons.style.display = "none";
+  //var calcProg = finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length);
+  var progBar = document.getElementById("progress-bar");
+ progBar.style = `width: 100%;`; 
+ progBar.innerHTML = `Everything complete!`;  
+
+
+
+}
+
+else{
 // if press "skip", move to new array called "Skipped"
-var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+
 skippedTasks.push(focusTask);
 
 //then remove from today's tasks
@@ -251,6 +273,7 @@ doneTask.removeChild(doneTask.firstElementChild);
 
 //then remove from list and do next thing
 doTasks();
+}
 
   /* // if press "skip", move to new array called "Skipped"
   if (document.getElementById("simpleList").children.length === 1){
