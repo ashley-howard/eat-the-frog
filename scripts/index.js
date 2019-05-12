@@ -1,7 +1,6 @@
  // Simple list JS
  Sortable.create(simpleList, {  });
 
- //var doneTask = document.getElementById("simpleList");
  const getSimpleList = document.getElementById("simpleList");
 
  var todayTasks = [];
@@ -89,7 +88,7 @@ if (getSavedTasks !== null) {
  }
  
  function addTask() {   
-  var getTask = document.getElementById("inputTask").value; 
+  let getTask = document.getElementById("inputTask").value; 
         
    if (getTask !== ''){
       var task = document.createElement("li");
