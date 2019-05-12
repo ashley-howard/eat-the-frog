@@ -1,13 +1,13 @@
  // Simple list JS
  Sortable.create(simpleList, {  });
 
- var doneTask = document.getElementById("simpleList");
+ //var doneTask = document.getElementById("simpleList");
+ const getSimpleList = document.getElementById("simpleList");
 
  var todayTasks = [];
  var tomorrowTasks = [];
  var finishedTasks = [];
  var skippedTasks = [];
- var simpleListArr = document.getElementById("simpleList");
 
  var addMoreButton = document.getElementById("add-more");
  var mainButtons = document.getElementById("main-buttons");
@@ -21,6 +21,7 @@
   const progCalc = () => {
     return Math.trunc((finishedTasks.length / (todayTasks.length + finishedTasks.length - skippedTasks.length) * 100));
    }
+
 
  /*////////////////////// storage /////////////// /*
 var addButton = document.getElementById("add-button");
@@ -94,7 +95,7 @@ if (getSavedTasks !== null) {
       var task = document.createElement("li");
    task.classList.add('list-group-item');
    task.innerHTML = getTask;
-   document.getElementById("simpleList").appendChild(task);
+   getSimpleList.appendChild(task);
    document.getElementById('inputTask').value = "";
    document.getElementById("addUpdate").innerHTML = "";
 
@@ -128,7 +129,7 @@ if (getSavedTasks !== null) {
 
  // Hide and show DIVS
  function finishAddTask(){
-    if(document.getElementById("simpleList").childElementCount >= 1){
+    if(getSimpleList.childElementCount >= 1){
       changeScreen('order');
     }
     else{
@@ -137,8 +138,8 @@ if (getSavedTasks !== null) {
  }
  
  function doTasks(){ 
-if (document.getElementById("simpleList").children.length >= 1){
-    var focusTask = document.getElementById("simpleList").firstElementChild.innerHTML;
+if (getSimpleList.children.length >= 1){
+    var focusTask = getSimpleList.firstElementChild.innerHTML;
     document.getElementById("focusTask").innerHTML = focusTask;
 
     changeScreen('do');
@@ -154,11 +155,11 @@ else{
  
  function finishedTask(){
   
-   if(document.getElementById("simpleList").children.length > 1){
+   if(getSimpleList.children.length > 1){
     // Add to finishedTasks array and remove from todayTasks
    finishedTasks.push(document.getElementById("focusTask").innerHTML);
 
-   doneTask.removeChild(doneTask.firstElementChild);
+   getSimpleList.removeChild(getSimpleList.firstElementChild);
    todayTasks.shift();
    doTasks();
    
@@ -172,12 +173,12 @@ else{
 
    }
 
-   else if(document.getElementById("simpleList").children.length === 1){
+   else if(getSimpleList.children.length === 1){
     progBar.style = `width: ${progCalc()}%;`; 
       // Add to finishedTasks array and remove from todayTasks
       doTasks();
     finishedTasks.push(document.getElementById("focusTask").innerHTML);
-    doneTask.removeChild(doneTask.firstElementChild);
+    getSimpleList.removeChild(getSimpleList.firstElementChild);
     todayTasks.shift();
 
     console.log(`Finished tasks: ${finishedTasks}`); 
@@ -208,11 +209,11 @@ else{
  }
  
  function skipTask(){
-  var lastTask = document.getElementById("simpleList").children.length;
+  var lastTask = getSimpleList.children.length;
 if (lastTask === 1){
 
   skippedTasks.push(focusTask.innerHTML);
-  doneTask.removeChild(doneTask.firstElementChild);
+  getSimpleList.removeChild(getSimpleList.firstElementChild);
 
   document.getElementById("focusTask").innerHTML = ""; 
   document.getElementById("inspireText").innerHTML = "Nice! You finished everything for today!";
@@ -241,7 +242,7 @@ else{
 skippedTasks.push(focusTask.innerHTML);
 
 //then remove from today's tasks
-doneTask.removeChild(doneTask.firstElementChild);
+getSimpleList.removeChild(getSimpleList.firstElementChild);
 
 //then remove from list and do next thing
 doTasks();
